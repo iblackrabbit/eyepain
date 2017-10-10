@@ -1,46 +1,49 @@
-$(window).load(function(){
+$(window).load(function () {
     var video = document.getElementsByTagName("video")[0];
     var playswitch = false;
-    var fullScreenSwitch =false;
-    $("#play").click(function(){
-        if(!playswitch){
+    var fullScreenSwitch = false;
+    $("#play").click(function () {
+        if (!playswitch) {
             activeVideo();
             playswitch = true;
-        }else{
+        } else {
             staticVideo();
             playswitch = false;
         }
     });
-    $(".pause").click(function(){
+    $(".pause").click(function () {
         console.log(1);
-        if(!playswitch){
+        if (!playswitch) {
             activeVideo();
             playswitch = true;
-        }else{
+        } else {
             staticVideo();
             playswitch = false;
         }
     });
-    function activeVideo(){
+
+    function activeVideo() {
         video.play();
-        $(".pause").css("display","none");
+        $(".pause").css("display", "none");
         $("#play").removeClass("fa fa-play");
         $("#play").addClass("fa fa-pause");
     }
-    function staticVideo(){
+
+    function staticVideo() {
         video.pause();
-        $(".pause").css("display","block");
+        $(".pause").css("display", "block");
         $("#play").removeClass("fa fa-pause");
         $("#play").addClass("fa fa-play");
     }
-    $("#fullscreen").click(function(){
-        if(!fullScreenSwitch){
+    $("#fullscreen").click(function () {
+        /* if(!fullScreenSwitch){
             video.webkitRequestFullScreen();
             fullScreenSwitch = true;
         }else{
             video.webkitCancelFullScreen();
             fullScreenSwitch = false;
-        }
+        } */
+        video.webkitRequestFullScreen();
     });
     $(".progress").click(function (e) {
         var progress = e.clientX - $(".progress").offset().left;
@@ -57,7 +60,7 @@ $(window).load(function(){
         var percent = currentTime / duration;
         $(".move").css('width', 800 * percent);
     });
-    $(".fa-repeat").click(function(){
+    $(".fa-repeat").click(function () {
         video.load();
         video.play();
     })
