@@ -27,6 +27,8 @@ video::-webkit-media-controls-enclosure {
     width: 800px;
     height: 494px;
     margin: 66px auto;
+    position: relative;
+    background: #000000;
 }
 
 .top {
@@ -71,10 +73,14 @@ video {
 }
 
 .bottom {
-    width: 800px;
-    height: 40px;
-    background: #000;
+    width: 100%;
+    height: 44px;
+    background:rgba(0, 0, 0, 0);
     line-height: 40px;
+    position: absolute;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
 }
 
 .bottom_l {

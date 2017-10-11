@@ -36,20 +36,33 @@ $(window).load(function () {
         $("#play").addClass("fa fa-play");
     }
     $("#fullscreen").click(function () {
-        /* if(!fullScreenSwitch){
+        if (!fullScreenSwitch) {
             video.webkitRequestFullScreen();
             fullScreenSwitch = true;
-        }else{
-            video.webkitCancelFullScreen();
+            $(".bottom").css("z-index", "2147483648");
+            setTimeout(function () {
+                $(".bottom").css("z-index", "200");
+            }, 5000);
+        } else {
+            document.webkitCancelFullScreen();
             fullScreenSwitch = false;
-        } */
-        video.webkitRequestFullScreen();
+            $(".bottom").css("display", "block");
+        }
     });
+    var timer = null;
+    $("video").mousemove(function (e) {
+        clearTimeout(timer);
+        $(".bottom").css("z-index", "2147483648");
+        timer = setTimeout(function () {
+            $(".bottom").css("z-index", "200");
+        }, 5000);
+    });
+
     $(".progress").click(function (e) {
         var progress = e.clientX - $(".progress").offset().left;
         video.currentTime = parseInt(progress / 800 * video.duration);
     });
-    video.addEventListener('timeupdate', function () {
+    video.addEventListener("timeupdate", function () {
         var duration = video.duration;
         var min = parseInt(duration / 60);
         var sec = parseInt(duration % 60);
